@@ -104,7 +104,8 @@ namespace Sorter
         {
             GCFSort bubble = new GCFSort();
             dataGridView4.Rows.Clear();
-            var comparator = Int32.Parse(textBox2.Text);
+            var defaultComparator = 20;
+            var comparator = string.IsNullOrEmpty(textBox2.Text)? defaultComparator: Int32.Parse(textBox2.Text);
 
             Stopwatch timer = Stopwatch.StartNew();
             var sorted = bubble.GCFSortBegin(arr.ToArray(),comparator);
