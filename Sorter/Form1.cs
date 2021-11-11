@@ -8,7 +8,6 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sorter.Models;
 using Sorter.Algorithm;
 
 namespace Sorter
@@ -47,7 +46,6 @@ namespace Sorter
             Stopwatch timer = Stopwatch.StartNew();
             var sorted = merge.MergeSortBegin(arr.ToArray());
             timer.Stop();
-            TimeSpan timespan = timer.Elapsed;
             dataGridView3.ColumnCount = 1;
             dataGridView3.Columns[0].Name = "sorted";
             foreach (var item in sorted)
@@ -56,7 +54,7 @@ namespace Sorter
                 dataGridView3.Rows.Add(items);
 
             }
-            label3.Text = (timespan).ToString() + "ms";
+            label3.Text = (timer.Elapsed.TotalMilliseconds).ToString() + "ms";
         
 
     }
@@ -66,8 +64,6 @@ namespace Sorter
             Stopwatch timer = Stopwatch.StartNew();
             var sorted=bubble.BubbleSortbegin(arr.ToArray());
             timer.Stop();
-
-            TimeSpan timespan = timer.Elapsed;
             dataGridView2.ColumnCount = 1;
             dataGridView2.Columns[0].Name = "sorted";
             foreach (var item in sorted)
@@ -76,7 +72,7 @@ namespace Sorter
                 dataGridView2.Rows.Add(items);
 
             }
-            label2.Text = (timespan).ToString() + "ms";
+            label2.Text = (timer.Elapsed.TotalMilliseconds).ToString() + "ms";
         }
 
         private void QuickSort(List<int> arr)
@@ -84,21 +80,18 @@ namespace Sorter
             QuickSort quickSort = new QuickSort();
             dataGridView1.Rows.Clear();
           
-            SortedQuickSort sort = new SortedQuickSort();
             Stopwatch timer = Stopwatch.StartNew();
-            sort.sorted = quickSort.QuickSortbegin(arr.ToArray()).ToList();
-            timer.Stop();
-            TimeSpan timespan = timer.Elapsed;
-            //var binding =new BindingList<SortedQuickSort>()
+            var sorted = quickSort.QuickSortbegin(arr.ToArray()).ToList();
+            timer.Stop();            
             dataGridView1.ColumnCount = 1;
             dataGridView1.Columns[0].Name = "sorted";
-            foreach (var item in sort.sorted)
+            foreach (var item in sorted)
             {
                 string[] items = { item.ToString() };
                 dataGridView1.Rows.Add(items);
 
             }
-            label1.Text = (timespan).ToString() + "ms";
+            label1.Text = (timer.Elapsed.TotalMilliseconds).ToString() + "ms";
         }
         private void GCFSort(List<int> arr)
         {
@@ -110,8 +103,7 @@ namespace Sorter
             Stopwatch timer = Stopwatch.StartNew();
             var sorted = bubble.GCFSortBegin(arr.ToArray(),comparator);
             timer.Stop();
-
-            TimeSpan timespan = timer.Elapsed;
+           
             dataGridView4.ColumnCount = 1;
             dataGridView4.Columns[0].Name = "sorted";
             foreach (var item in sorted)
@@ -120,7 +112,7 @@ namespace Sorter
                 dataGridView4.Rows.Add(items);
 
             }
-            label4.Text = (timespan).ToString() + "ms";
+            label4.Text = (timer.Elapsed.TotalMilliseconds).ToString() + "ms";
         }
         private void label5_Click(object sender, EventArgs e)
         {
