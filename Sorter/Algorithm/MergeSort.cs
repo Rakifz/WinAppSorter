@@ -13,9 +13,9 @@ namespace Sorter.Algorithm
             SortMerge(arr, 0, arr.Length - 1);
             return arr;
         }
-        public void MainMerge(int[] numbers, int left, int mid, int right)
+        public void MainMerge(int[] arr, int left, int mid, int right)
         {
-            int[] temp = new int[25];
+            int[] temp = new int[arr.Length];
             int i, eol, num, pos;
             eol = (mid - 1);
             pos = left;
@@ -23,18 +23,18 @@ namespace Sorter.Algorithm
 
             while ((left <= eol) && (mid <= right))
             {
-                if (numbers[left] <= numbers[mid])
-                    temp[pos++] = numbers[left++];
+                if (arr[left] <= arr[mid])
+                    temp[pos++] = arr[left++];
                 else
-                    temp[pos++] = numbers[mid++];
+                    temp[pos++] = arr[mid++];
             }
             while (left <= eol)
-                temp[pos++] = numbers[left++];
+                temp[pos++] = arr[left++];
             while (mid <= right)
-                temp[pos++] = numbers[mid++];
+                temp[pos++] = arr[mid++];
             for (i = 0; i < num; i++)
             {
-                numbers[right] = temp[right];
+                arr[right] = temp[right];
                 right--;
             }
         }
